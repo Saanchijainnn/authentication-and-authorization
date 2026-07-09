@@ -1,0 +1,77 @@
+PART-14
+
+*Authentication and Authorization 
+    -user ko profile dene se pehle ye check karna 
+     hota  h user h kaun = authentication 
+
+    -autgorized to perform some tak which are only allowed to be executed by the admin 
+
+ -server har baar bhool jaaata h ki app kaun ho, ab
+   kyuki vo bhool gaya h to vo har baar har kaam k liye aapse puchega app kaun ho 
+
+ - sabse pehle hume kuch cheeze seekni h 
+     i) cookie kaise set karte h  and read karte h 
+
+const express = require('express');
+const app = express();
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
+app.get("/", function (req, res) {
+    res.cookie("name", "harshita");
+    res.send("done");
+})
+
+app.get("/read", function (req, res) {
+    console.log(req.cookies);
+    res.send("read page ");
+})
+
+app.listen(3000);
+
+
+
+     ii) bcrypt kaise use karte h for password encryption and dycryption
+
+     -encryption 
+      const express = require('express');
+const app = express();
+const bcrypt = require('bcrypt');
+
+
+
+app.get("/", function (req, res) {
+    bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash("saanchi", salt, function(err, hash) {
+        console.log(hash);
+    });
+});
+})
+
+
+
+app.listen(3000);
+
+       -dycryption
+       const express = require('express');
+const app = express();
+const bcrypt = require('bcrypt');
+
+
+
+app.get("/", function (req, res) {
+   bcrypt.compare("saanchi", "$2b$10$GuCRUNb8H.l8wr7/ZjsOWeRxvSBnEdBlinVl6I4ptQee8dyYqyS2e", function(err, result) {
+    console.log(result);
+});
+})
+
+
+
+app.listen(3000);
+
+
+     iii) jwt kya h and jwt m dta kasie strore karein and bahar nikale
+
+
+     server se browser p data save karana is cookie 
