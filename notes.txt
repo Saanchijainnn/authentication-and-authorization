@@ -116,7 +116,7 @@ create user account
 
    *mongodb data association 
 
-   Sure, yaha plain text mein hai:
+
 
 ===================================
 BACKEND TERMS - GET, POST, RENDER, SEND ETC
